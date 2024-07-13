@@ -1,0 +1,1 @@
+"use strict";document.querySelector(".flink").insertAdjacentHTML("afterbegin","<div id='friend1'></div>"),xkFriend.init({el:"#friend1",api:["https://kkfriend.vercel.app/","https://friend.kkfive.top/index.json"],loading_img:"https://7.dusays.com/2021/03/04/d2d5e983e2961.gif",fail_img:"https://file.acs.pw/picGo/2021/1/22/90331f043583fe472e59602f835cc28c.gif"});
