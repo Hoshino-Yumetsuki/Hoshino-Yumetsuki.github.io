@@ -1,0 +1,5 @@
+(function(e,n){typeof module=="object"&&typeof module.exports=="object"?n(exports,require("@rollup/plugin-node-resolve"),require("@rollup/pluginutils")):typeof define=="function"&&define.amd?define(["exports","@rollup/plugin-node-resolve","@rollup/pluginutils"],n):(e=typeof globalThis<"u"?globalThis:e||self)&&n(e.rollupConfig={},e.pluginNodeResolve,e.pluginutils)})(this,function(e,n,r){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return l}});function o(){var t=arguments.length>0&&arguments[0]!==void 0?arguments[0]:{};if(!t.include)throw Error("include option should be specified");var s=(0,r.createFilter)(t.include,t.exclude);return{name:"string",transform:function(i,u){if(s(u))return{code:"export default ".concat(JSON.stringify(i),";"),map:{mappings:""}}},renderChunk:function(i,u){var p=arguments.length>2&&arguments[2]!==void 0?arguments[2]:{};return`/*!
+ * Live2D Widget
+ * https://github.com/stevenjoezhang/live2d-widget
+ */
+`+i}}}var l={input:"src/waifu-tips.js",plugins:[(0,n.nodeResolve)(),o({include:"**/*.svg"})]}});

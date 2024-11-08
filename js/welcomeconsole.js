@@ -1,0 +1,1 @@
+(function(e,o){typeof module=="object"&&typeof module.exports=="object"?o():typeof define=="function"&&define.amd?define([],o):(e=typeof globalThis<"u"?globalThis:e||self)&&o()})(this,function(){document.querySelector(".home .category-list").onmousewheel=function(e){return e.deltaY>=0?this.scrollLeft+=20:this.scrollLeft-=20,!1}});

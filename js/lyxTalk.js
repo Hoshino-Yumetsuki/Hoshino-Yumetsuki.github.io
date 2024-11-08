@@ -1,0 +1,1 @@
+(function(n,e){typeof module=="object"&&typeof module.exports=="object"?e():typeof define=="function"&&define.amd?define([],e):(n=typeof globalThis<"u"?globalThis:n||self)&&e()})(this,function(){var n={};n.init=function(e,i,o,t){AV.init({appId:e,appKey:i,serverURL:o}),new AV.Query("content").find().then(function(f){console.log(f)})}});

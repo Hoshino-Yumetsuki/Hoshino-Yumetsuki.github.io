@@ -1,0 +1,1 @@
+(function(i,e){typeof module=="object"&&typeof module.exports=="object"?e():typeof define=="function"&&define.amd?define([],e):(i=typeof globalThis<"u"?globalThis:i||self)&&e()})(this,function(){(window.ActiveXObject||"ActiveXObject"in window)&&(window.location.href="./noie.html")});
