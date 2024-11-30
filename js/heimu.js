@@ -1,0 +1,1 @@
+window.location.href.indexOf("posts")!==-1&&$(document).ready(function(){var o=document.querySelectorAll("s>em,del");o.forEach(function(t){try{t.classList.contains("heimu")&&(t.title="\u4F60\u77E5\u9053\u7684\u592A\u591A\u4E86",t.setAttribute("data-toggle","tooltip"))}catch(e){console.log("\u5904\u7406\u5143\u7D20\u65F6\u53D1\u751F\u9519\u8BEF:",e)}})});

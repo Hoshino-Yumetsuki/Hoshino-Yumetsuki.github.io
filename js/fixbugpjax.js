@@ -1,0 +1,1 @@
+var evt=new CustomEvent("pjax:complete",{bubbles:!1,cancelable:!1});window.dispatchEvent(evt),document.addEventListener("pjax:complete",t=>{const e=document.querySelector("#setting-buttons");e&&$(e).show()});
