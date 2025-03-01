@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>2024 年终总结</title>
+      <link href="/posts/04f3c137/"/>
+      <url>/posts/04f3c137/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>漫步于人世，不觉间已又过一年。尝长叹于往昔，奈何岁月不返，于是便驻足于分隔时间的河流，望对岸的我，回首前路。</p><p>事实上，每到年末，不免是要伤感一番的。这些年来，我认为我的处境是愈加向下了，然而愈加向下是我所认为了，也许在实际上并没有愈加向下，只是我对自身的期望于不平衡、不充分的个人发展之间的矛盾更深了。相比于去年的年终总结，今年我所想说的话更多了。尽管如此，我依旧没有什么想说的，许多话到嘴边便如浓痰之难出了。</p><p>我曾想于午后的阳光下漫步于古道长街，看四周青石绿瓦、白墙红砖。于行走间且听风吟，聆枝叶沙沙。然后寻一间咖啡馆，点一杯热拿铁，便是整个下午。</p><p>可惜，它们终究仅存于我的记忆中。现实的车水马龙构成了将人推动的浪潮，无人能阻挡大势所趋，这些东西，也随之烟消云散了。</p><p>纪念、追忆，然后迎接新的一年。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 年终总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常 </tag>
+            
+            <tag> 年终总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Obsidian 插件：Abbrlink——让你的编辑器和博客融合得更紧密</title>
+      <link href="/posts/1ee472c8/"/>
+      <url>/posts/1ee472c8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>经常折腾 Hexo 的朋友们肯定都知道 Abbrlink 这个东西。<del>不知道也没关系，现在就知道了</del>它的作用是为博客的每篇文章生成一个永久链接。在长期以来的使用中，我发现 Hexo 现在的 Abbrlink 插件已经无法满足我的需求。所以，<a href="https://github.com/Hoshino-Yumetsuki/obsidian-plugin-abbrlink">适用于 Obsidian 的 Abbrlink 插件</a>诞生了。它有效的解决了几个槽点。</p><h2 id="解决槽点-1无法满足一个编辑器同时管理多个博客仓库和需要手动添加"><a class="markdownIt-Anchor" href="#解决槽点-1无法满足一个编辑器同时管理多个博客仓库和需要手动添加"></a> 解决槽点 1：无法满足一个编辑器同时管理多个博客仓库和需要手动添加</h2><p>因为我有多个写作站，所以 _posts 文件夹是游离于 Hexo 本体文件夹之外的，通过 Obsidian 来统一管理所有文章， Github Action 集成部署时复制文章到 Hexo 目录下生成博客。此时出现了一个问题，Hexo 的 Abbrlink 插件依赖于 Hexo 本体运行，它的运行逻辑为当运行 hexo g 或者 hexo s 时给 frontmatter 中没有 abbrlink 的文章添加 abbrlink。然而我的 _posts 在 Hexo 本体之外，自然无法让 Hexo 的插件自动为文章加上 Abbrlink。有两个选择：手动瞎打一个 Abbrlink 添加到 frontmatter 中和手动生成 sha256 插入到 frontmatter 中。很显然，这两个方式都是极为痛苦的。</p><p>该插件与 Obsidian 编辑器深度集成，支持在新建文章时自动插入，同时也支持为原来没有 Abbrlink 的文章添加 Abbrlink。有效的解决了手动添加的头疼问题。</p><h2 id="解决槽点-2可能存在的-abbrlink-冲突问题"><a class="markdownIt-Anchor" href="#解决槽点-2可能存在的-abbrlink-冲突问题"></a> 解决槽点 2：可能存在的 Abbrlink 冲突问题</h2><p>记得糖果屋群里有小伙伴说过，Hexo 的 Abbrlink 在文章多的时候会出现 Abbrlink 冲突的问题，导致链接标记的的是一篇文章，而实际上访问的是另外一篇文章。</p><p>如两个文章的 Abbrlink 都是 <code>2b89093e</code>，这时就会出现链接冲突。</p><p>这个插件在生成链接时默认使用的是文件名的 sha256 前八位摘要，在生成时自动检查是否存在相同的链接，如果存在冲突，则放弃生成的链接，改用随机生成模式再次生成，最大程度上确保 Abbrlink 的唯一性。</p><h2 id="解决槽点-3hexo-的-abbrlink-生成过慢"><a class="markdownIt-Anchor" href="#解决槽点-3hexo-的-abbrlink-生成过慢"></a> 解决槽点 3：Hexo 的 Abbrlink 生成过慢</h2><p>Hexo 的 Abbrlink 生成依赖 hexo 的两条生成命令，如果在主题复杂或者博客文章多的情况下生成速度缓慢。</p><p>在编写插件时，我针对多文章的场景进行了一些优化，确保了生成时的性能最大化。<del>虽然在 Obsidian 里生成本来就不慢</del></p><h2 id="总而言之"><a class="markdownIt-Anchor" href="#总而言之"></a> 总而言之</h2><p>总而言之，没有总而言之，自从用了此插件，我就一直用此插件。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Obsidian </tag>
+            
+            <tag> Abbrlink </tag>
+            
+            <tag> 短链接 </tag>
+            
+            <tag> 永久链接 </tag>
+            
+            <tag> 编辑器 </tag>
+            
+            <tag> Markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>谈谈「博客：遗章」</title>
+      <link href="/posts/ce5471fd/"/>
+      <url>/posts/ce5471fd/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>嗯，又是一个晚上，写点什么好呢？不如就谈谈「博客：遗章」吧。</p><p>这个站点与主站一样，使用 Hexo 构建，只不过主题不同，使用的是 Diaspora 主题。它是我主题的老站点。虽然我有了一个很好看的新站点，但我依旧选择保留这个老站点。这个主题是我在博客刚刚建立的时候选择的第一个主题，其对我有着不同的意义，它见证着我博客的一步步发展，也是我的一个关键节点。</p><p>在我建立博客的旅途中，我用过很多主题，比如 Next，亦或者是原版的 Butterfly。不过这些主题的使用时间都不长，在我的博客进行更新的时候都换掉了。</p><p>我这个人应该算是比较恋旧吧，就像我之前写的一样，我怀念那个无虑的夏天。这个「博客：遗章」不仅是一个老博客的记录，更是那个夏天存在的证明。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊杂谈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 主题 </tag>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>要写点什么......吗？</title>
+      <link href="/posts/2b89093e/"/>
+      <url>/posts/2b89093e/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>本来想写点什么，但是想到一半又忘记些什么了，所以就有了这篇。</p><p>我常想，写东西一定要写点什么才好吗？我认为不是，写东西可以是纯粹的乱写，也可以是发牢骚，当然也可以言之有物。但是言之有物的时候并没有这么好找。然而，言之无物的话，写点什么好呢？</p><p>答案是：不知道，也就是说，想到什么写什么。但是想到什么写什么总是有些弊端的，比如写着写着就不知道些什么了。总而言之，就是一个随心所欲。</p><p>在长久的生活中，我已经被折磨太久了。有些时候，没有东西偏偏就是要写点什么出来，按理来说，这时候我编写故事的能力已经比较强大了。但也只是按理来说，然而在长期的应试教育下，我的文风已经逐渐的被固定下来了——是的，那种应试作文的文风。我认为这种文风是比较紧绷的，要求精炼而简洁。但是我的写作能力并不能支撑我写这种风格的文章，最终只落得个半死不活的写作能力。</p><p>曾几何时我有个爱好就是写小说。小说，主要是给自己看，也算是承载着一些自己的幻想罢，总之就是一些在现实中难以得到或者达到的东西，通过文字写出来，也算是在其他地方了却了一个心愿。后来，我写小说的时间逐渐变短，也就暂时停止了这项爱好，不过那些想到的事情、事件、人物依然停留在我的脑海中挥之不去。当有一天我想再次拾起这项爱好时，我却发现我再也写不出来了。</p><p>写不出来，并不是真正意义上的写不出来，而是现在的写作风格不足以支撑小说的大篇幅写作——我的文风过于紧绷了。之前我看我的某个朋友说：我的文风是不是有些过于松弛了，写作文还是这种松弛的文风。在我看来，他松弛的文风正是我想要的，即使有时候当事人并不想要。人的悲欢和所需有时并不想通，我苦于我的应试文风，他苦于他的文风过于松弛。</p><p>有时候我总希望，在写小说时我能写出些什么东西，抛开文风，我大约的确可能写不出来了。其中包括我那逐渐匮乏的想象力。在多年的中国式教育下，学生的所有行动皆应依照着考试的指挥棒，而其它的东西，都是可以丢弃的。我的思想在这场庞大的浪潮冲刷下也渐渐变得平静如无波的水面，难以泛起思想的波纹。</p><p>人们常说，灵感是思维的火花，倘若思想如此平静，那么能否产生火花也不言而喻了。</p><p>在很久之前，我写过一篇可能算是小说的百合小短文。为什么是百合不重要，也许很重要，看起来应该比较冲突。为什么喜欢百合呢？可能只是一个身份当久了想换一个身份吧。这不重要，主要是后面我为什么不写了。就像我上面提到的，我的灵感逐渐缺乏了，文风也愈加的不松驰。我并不是没有尝试过重拾这项爱好，当我尝试进行写作时，我发现，原本或许还能写出点什么的思想，写出来的东西比原来缺少了点什么。可能是一种精神、一种向往的寄托。这时候，我已经把重拾这项爱好作为一个任务来看待了。当一项爱好变为一个任务时，你会发现你不再喜欢这个爱好，这是众所周知的。</p><p>当时刚开始写小说时，十几二十分钟之内洋洋洒洒一千来字的设定，亦或是偶尔蹦出的元器件结构图，这都是那时候最可贵的东西。而如今，它们都已经逝去了。</p><p>我不得不承认，我已经难以重拾写作的爱好。可能是因为，写作已经不再适应我现在的生活了，又或者是当年的那份文风随着青春的记忆一起离开了。</p><p>我不得不承认的是，那些异世界的幻想依然停留在我的脑海中，有时无聊的时候，我依然会不住的思索，如果我不是作为“我”，而是其它的什么。</p><p>此刻写这东西，可能是为了发牢骚，也可能是看着年久失修的博客，想回忆起一些什么。当初建立博客的目的，应该纯粹是为了好玩，而不是为了写东西。不过当我将博客建立起来之后，我发现这博客可以放些东西上去。</p><p>我的第一个能够真正意义上称为博客的博客还是使用 Hexo Diaspora 主题构建的，当时我苦于难以寻觅到一个好看的主题，当我在庞大的互联网上搜索时，我一眼就相中了这个风格独特的主题。当时我欣喜若狂，立刻就使用它把博客构建了起来。后来，我发现这个主图存在一些小的bug。就前去寻找新的主题了。</p><p>现在如果在看我博客的人一眼就能看出来，这个博客早已不是当初的模样，而最开始的博客，也变成了如今的「博客：遗章」。这是现在的我，对早年时光一种无源的眷恋，它促使我重拾当年那份无边的记忆。Diaspora 主题早已停止更新，后来在我搭建「博客：遗章」的时候，凭着对当年的那份热爱，重新对它进行了维护。有时候，我并不知道我当时在想什么，可能，只是一时的冲动吧。</p><p>回忆么，这些东西可能早已随着时光流逝，有些该想不起来的东西就再也想不起来了。现在的我，可能也只是一个站在船上，在一条名为记忆的河里，打捞那个无虑的盛夏遗留下来的遗物的人了吧。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊杂谈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>家里云折腾之路——如何把一台好好的浪潮 NF5270 M3 玩坏</title>
+      <link href="/posts/228c2ef8/"/>
+      <url>/posts/228c2ef8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><strong>本文存在非常多的弱智操作，阅读时请丢掉你的脑子</strong></p><p>每天，我都会在 B 站刷到一堆关于如何折腾 NAS、开发板等硬件产品的视频。我那躁动的心啊。从某一天起，我就对拥有一台正经的家里云期待不已。而在把我们家的那台遥遥领先 H6 子路由卖出后，我终于能够有 245 大洋资金在小黄鱼上购入一台浪潮 NF5270M3 准系统。而这，也成了噩梦的开始。</p><h2 id="折腾的开端"><a class="markdownIt-Anchor" href="#折腾的开端"></a> 折腾的开端</h2><p>三天之后，我如期收到了服务器，于是迫不及待地把两颗 10 核 20 线程 CPU 和两根大佬送的 16G DDR3 ECC 内存插上。再将硬盘插入硬盘槽，直接上电。这时我突然发现没有视频输出接口，只得买了 VGA 转 HDMI 接口作罢。此时我开始按照说明书进入了 BMC 管理接口，看到固件版本还是 2012 年的，小手一贱点了升级，一直没反应，于是着急忙慌断电重启，从此管理口成功的被我玩废了。</p><p>又是两天后，接口到了，发现插上之后没有输出，便又去买了张 14 块的亮机卡。又是两天，亮机卡到了，进 BIOS 一看，好嘛，人家主板默认独显输出，难怪 VGA 没信号，直接买亮机卡得了。</p><p>接着，一看，没有硬盘，一查才知道要搭配阵列卡。于是乎又去小黄鱼买了一张阵列卡。买卡的时候没看配置，结果买到了一张仅支持 RAID0 和 RAID1 的烂卡，好在装上了系统。然后又去买一张支持 RAID6 的。</p><h2 id="然后"><a class="markdownIt-Anchor" href="#然后"></a> 然后</h2><p>在等待阵列卡到的同时，我开始思考怎么将 BMC 救回来，通过浪潮的官网，发现 BMC 是可以被强制刷新的，于是乎便下载了工具。在刷新的过程中，需要查阅工具文档，但是因为工具文档年久失修，文不对题，然后我发现每个工具的压缩包内都有一个 boot.bin 文件，然后看到文档内需要刷新的固件也是.bin，就把 boot.bin 当作固件刷进去了。实际上，压缩包根目录那个没有后缀的约 30m 的文件才是固件，这时 BMC 就彻底被我刷废了。</p><h2 id="当阵列卡到了"><a class="markdownIt-Anchor" href="#当阵列卡到了"></a> 当阵列卡到了</h2><p>然后就开始装系统。浅浅组了个 RAID6，在开机的时候，由于 BMC 被刷坏，风扇彻底失去控制，如同脱缰的波音 747 一样非常的喧嚣。我人在一片喧嚣之中给服务器装系统，系统装到一半报 BMC 错误，然后我不信邪的疯狂的重建启动盘，成功的刷废两个 U 盘。</p><h2 id="再然后"><a class="markdownIt-Anchor" href="#再然后"></a> 再然后</h2><p>阵列卡管理系统不知怎得原地爆炸，无法自检</p><h2 id="再再然后"><a class="markdownIt-Anchor" href="#再再然后"></a> 再再然后</h2><p>拆解机器，卖掉配件回收成本</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊杂谈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 浪潮 </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 折腾 </tag>
+            
+            <tag> 家里云 </tag>
+            
+            <tag> RAID </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2023 年终总结</title>
+      <link href="/posts/c262e439/"/>
+      <url>/posts/c262e439/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>还有 364 天就跨年了，回想起上次跨年，仿佛就像是像在昨天一样。</p><p>2023 年，是个难忘的一年，然而，年年都挺难忘的。那么 2023 年，肯定有很多难忘的人，难忘的事吧。实则不然，并没有很多，如此说来，2023 年似乎又是个不是那么难忘的一年。即便如此，2023 年依然是难忘的。</p><p>说是年终总结，倒不如说是一次对今年的自我的评价和审视。既然是总结，那就不能仅仅包含这一个主题。一年对人来说是漫长的，即便是记忆也会出现模糊，也随着风，消失在时间之中。</p><p>如此说来，年终总结似乎也没有那么重要，但年终总结实在是一年的末尾非常重要的一环。如果少了年终总结，就如同吃泡面没加佐料一样寡淡无味。</p><p>在这里，即便是很多想说的话，也无言表达，只留下一文，谨以此记录逝去的时光。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 年终总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常 </tag>
+            
+            <tag> 年终总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>这可能是首个 DiffSinger 数据集全自动标注工具——Fast-Phasr-Next</title>
+      <link href="/posts/de1f83f4/"/>
+      <url>/posts/de1f83f4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2><p>DiffSinger 是一种基于神经网络的歌声合成系统，它可以根据给定的歌词和旋律生成高质量的歌声。然而，DiffSinger 的训练过程也面临着一些挑战，其中之一就是它需要一个大规模且高质量的歌声数据集来训练。为了制作一个适合 DiffSinger 的数据集，声库开发者需要对每个音频片段进行音素持续时间标注，这是一个非常耗时和繁琐的过程。</p><p>因此，我们开发了一个自动标注工具，名为 Fast-Phasr-Next，它可以快速地生成 DiffSinger 所需的标注信息，从而简化了数据集的制作过程。本文将介绍我们的工具的设计思路，主要功能，技术细节，以及使用方法。需要注意的是，目前该工具目前<strong>支持中文、英文和日语</strong>（但日语识别的可靠性不高）。</p><h2 id="开发思路"><a class="markdownIt-Anchor" href="#开发思路"></a> 开发思路</h2><p>在开发时，我们借鉴了 Fast-Phasr，也就是第一代自动标注工具的开发者 Infinity-INF 的设计思路，使用了 AI 来检测数据音频中的人声，不过初代工具所转换出来的.lab 文件中的音素是散乱的，需要重新整合，这使得下一步的开发难上加难。</p><p>第一代不同的是，我们使用了 OpenAI 的语音识别项目 openai-whisper，它可以将输入的语音通过模型精准的转换为文字。当音频转换为文字后，困难便会迎刃而解，在此，我们使用 pypinyin 来处理转换出的文字，这样输出的就是符合 DiffSinger 数据集标准的标注了。</p><h2 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h2><p>目前 Fast-Phasr-Next 支持 openai-whisper 的几个模型</p><table><thead><tr><th style="text-align:center">Size</th><th style="text-align:center">Parameters</th><th style="text-align:center">English-only model</th><th style="text-align:center">Multilingual model</th><th style="text-align:center">Required VRAM</th><th style="text-align:center">Relative speed</th></tr></thead><tbody><tr><td style="text-align:center">tiny</td><td style="text-align:center">39 M</td><td style="text-align:center"><code>tiny.en</code></td><td style="text-align:center"><code>tiny</code></td><td style="text-align:center">~1 GB</td><td style="text-align:center">~32x</td></tr><tr><td style="text-align:center">base</td><td style="text-align:center">74 M</td><td style="text-align:center"><code>base.en</code></td><td style="text-align:center"><code>base</code></td><td style="text-align:center">~1 GB</td><td style="text-align:center">~16x</td></tr><tr><td style="text-align:center">small</td><td style="text-align:center">244 M</td><td style="text-align:center"><code>small.en</code></td><td style="text-align:center"><code>small</code></td><td style="text-align:center">~2 GB</td><td style="text-align:center">~6x</td></tr><tr><td style="text-align:center">medium</td><td style="text-align:center">769 M</td><td style="text-align:center"><code>medium.en</code></td><td style="text-align:center"><code>medium</code></td><td style="text-align:center">~5 GB</td><td style="text-align:center">~2x</td></tr><tr><td style="text-align:center">large</td><td style="text-align:center">1550 M</td><td style="text-align:center">N/A</td><td style="text-align:center"><code>large</code></td><td style="text-align:center">~10 GB</td><td style="text-align:center">1x</td></tr></tbody></table><p>其中 base 和 small 模型已经能满足大部分的需要，更大的模型会减缓标注的速度，如非必要无需选择更大的模型。</p><p>使用项目先 clone 仓库到任意文件夹</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Anjiurine/fast-phasr-next.git</span><br></pre></td></tr></table></figure><p>随后创建一个 conda 虚拟环境</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n fast-phasr-next python=3.11 -y</span><br><span class="line">conda activate fast-phasr-next</span><br></pre></td></tr></table></figure><p>随后安装依赖，需要注意的是，使用 gpu 的用户需要先安装 cuda 版本的 torch，否则在 openai-whisper 安装时会自动安装 cpu-only 版本的 torch，这样在使用时会对推理速度造成影响。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># cpu</span><br><span class="line">pip install -r requirement.txt</span><br><span class="line"></span><br><span class="line"># gpu</span><br><span class="line">conda install cudatoolkit -y</span><br><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</span><br><span class="line"></span><br><span class="line">pip install -r requirement.txt</span><br></pre></td></tr></table></figure><p>在安装好依赖后就可以开始推理啦</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python main.py -d [import directory] -m [model default=&quot;base&quot;] -l [language default=&quot;Chinese&quot;]</span><br></pre></td></tr></table></figure><p><strong>ps:程序永远存在不确定性，请不要 100%相信自动程序（即使程序有很高的可靠性），如果是重大项目请在使用该程序后对音素序列进行必要的检查</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DiffSinger </tag>
+            
+            <tag> 自动标注 </tag>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>拯救流量爆炸的 Vercel——使用Cloudflare Workers做负载均衡</title>
+      <link href="/posts/ad884987/"/>
+      <url>/posts/ad884987/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="事情起因"><a class="markdownIt-Anchor" href="#事情起因"></a> 事情起因</h2><p>这两天，把我的某个网站的评论系统换成了 Twikoo，过了几天一看，因为网站访问量比较高（日 2k+），Vercel 的云函数使用量直接爆炸</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/6f3c565b/1.webp" alt="" /><br />我这一想，嘶~这到时候 Vercel 给我封了咋整。随即，我就开始查找相关负载均衡的资料。因为我之前完全没有做过这方面的功课，所以光是查资料就用了半天。瞎找半天，发现结果 Cloudflare 支持基于 DNS 的负载均衡方案，但是我定睛一看，只有 A 记录和 AAAA 记录支持，各种云函数平台基本上都是 CNAME 的，这可难办啊。</p><p>再看 Cloudflare 的动态负载均衡方案，5 刀，死贵，当即放弃。</p><h2 id="一线曙光"><a class="markdownIt-Anchor" href="#一线曙光"></a> 一线曙光</h2><p>当我在吃饭的时候，突然想到 Cloudflare 有 Workers 这个功能，那我是不是可以去薅 cf 的羊毛呢？</p><p>Cloudflare Workers 每天有 100k 次的请求次数，对于我这种每天全站最大请求次数只有 31k 的小站足够了，何况我目前要分流的仅仅是一个 Twikoo！</p><h2 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h2><p>于是乎，我当即就让一个朋友<del>（无中生友）</del>帮我写了 Workers 代码。这个代码能够将发送到 Workers 的流量根据权重分流到不同的 URL。（是的你没听错，它甚至支持配置权重！）</p><p>下面是完整代码</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要分流的url，支持添加多条url</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">TARGETS</span> = [<span class="string">&quot;https://example1.com&quot;</span>, <span class="string">&quot;https://example2.com&quot;</span>]</span><br><span class="line"><span class="comment">// url权重，数字一样就是对半分</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">WEIGHTS</span> = [<span class="number">5</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">handleRequest</span>(<span class="params">request</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> random = <span class="title class_">Math</span>.<span class="title function_">random</span>()</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="variable constant_">WEIGHTS</span>.<span class="title function_">reduce</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b, <span class="number">0</span>)</span><br><span class="line">  random = random * sum</span><br><span class="line">  <span class="keyword">let</span> target = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">let</span> acc = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="variable constant_">TARGETS</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    acc += <span class="variable constant_">WEIGHTS</span>[i]</span><br><span class="line">    <span class="keyword">if</span> (random &lt; acc) &#123;</span><br><span class="line">      target = <span class="variable constant_">TARGETS</span>[i]</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> url = <span class="keyword">new</span> <span class="title function_">URL</span>(request.<span class="property">url</span>)</span><br><span class="line">  <span class="keyword">let</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(target)</span><br><span class="line">  url.<span class="property">protocol</span> = targetUrl.<span class="property">protocol</span></span><br><span class="line">  url.<span class="property">hostname</span> = targetUrl.<span class="property">hostname</span></span><br><span class="line">  url.<span class="property">pathname</span> = targetUrl.<span class="property">pathname</span></span><br><span class="line">  url.<span class="property">search</span> = targetUrl.<span class="property">search</span></span><br><span class="line">  url.<span class="property">hash</span> = targetUrl.<span class="property">hash</span></span><br><span class="line">  <span class="keyword">let</span> newRequest = <span class="keyword">new</span> <span class="title class_">Request</span>(url, request)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> <span class="title function_">fetch</span>(newRequest)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">addEventListener</span>(<span class="string">&quot;fetch&quot;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">  event.<span class="title function_">respondWith</span>(<span class="title function_">handleRequest</span>(event.<span class="property">request</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 日常 </tag>
+            
+            <tag> Cloudflare </tag>
+            
+            <tag> Vercel </tag>
+            
+            <tag> 负载均衡 </tag>
+            
+            <tag> 谷歌翻译 </tag>
+            
+            <tag> Workers </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>全国首款支持多环境开发的 CEC-IDE，卡脖子问题解决，国产崛起了？</title>
+      <link href="/posts/e54f7476/"/>
+      <url>/posts/e54f7476/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>以下文章来源于张洪 Heo，作者张洪 Heo</p><a class="tag-Link" target="_blank" href="https://blog.zhheo.com/p/e54f7476.html">    <div class="tag-link-tips">引用站外地址</div>    <div class="tag-link-bottom">        <div class="tag-link-left" style="background-image: url(https://api.iowen.cn/favicon/blog.zhheo.com/p/e54f7476.html.png);"></div>        <div class="tag-link-right">            <div class="tag-link-title">全国首款支持多环境开发的 CEC-IDE，卡脖子问题解决，国产崛起了？</div>            <div class="tag-link-sitename">张洪Heo</div>        </div>        <i class="fa-solid fa-angle-right"></i>    </div>    </a><p>今天早上就被这个重磅消息吸引了，这个文章得好好宣传一下继国产自研浏览器、国产自研操作系统、国产自研手机系统后的全新力作：国产自研 IDE！</p><p>先给不了解的小伙伴介绍一下什么是 IDE：</p><p>IDE 代表集成开发环境（Integrated Development Environment）。它是一个软件应用程序，旨在为开发人员提供一个集成的工作区，以便他们可以更轻松地编写、调试和测试软件应用程序。</p><p>意思就是开发者写代码得有个工具来写、来调试，那么就需要 IDE 来进行操作。在过去 IDE 一直被国外垄断，常见的 IDE 工具：</p><ul><li>Visual Studio: 适用于多种编程语言，如 C#、C++、Python 等，广泛用于 Windows 开发。</li><li>Eclipse: 一个开源的 IDE，支持多种编程语言和框架，如 Java、Python、C++等。</li><li>IntelliJ IDEA: 主要用于 Java 开发，但也支持其他语言，如 Kotlin。</li><li>Xcode: 专门用于开发苹果的操作系统（iOS、macOS）应用程序的 IDE。</li><li>Android Studio: 专门用于开发 Android 应用程序的 IDE。</li><li>PyCharm: 面向 Python 开发的 IDE，提供丰富的功能和工具。<br />那么这个“卡脖子”难题终于得到了解决！我们也有了自研的 IDE 辣！</li></ul><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo.webp" alt="" /></p><p>公众号截图</p><h2 id="欣赏一下-logo"><a class="markdownIt-Anchor" href="#欣赏一下-logo"></a> 欣赏一下 logo</h2><p>要是说想要拿下国产高地，界面就不能输，最重要的就是要将 logo 设计好，这可是整个项目工程的<strong>重中之重</strong>！可能占据了整个项目非常大的工作比例，所以 LOGO 一定要至关重要。我们看一下 logo：</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(1).webp" alt="" /></p><p>这个 logo 一看就有科技推动的感觉，让我们人与人之间通过 app 联系在了一起！</p><p>诶，不对，上传错了，是这个：</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(12).webp" alt="" /></p><p>通过一个重叠的感觉让整个应用富有立体感，和飘带般的质感和体积感，非常不错！</p><p>诶，不对，拿错了，是这个：</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(2).webp" alt="" /></p><p>我再三确认过了，就是这个图标，蓝色的渐变色运用非常的巧妙，充分的体现了科技感，并且还用了当下最流行的扁平化设计，有国际潮流的感觉。非常的棒 👍！</p><h2 id="是时候欣赏一下界面辣"><a class="markdownIt-Anchor" href="#是时候欣赏一下界面辣"></a> 是时候欣赏一下界面辣</h2><p>图片是非常的漂亮，一看就是请了平面设计师来做过设计的。然后我们来安装一下应用吧！</p><p>下面图片来自@云默安喵~</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(3).webp" alt="" /></p><p>左侧是在安装我们的国产之光，右侧是截图一不小心截到的，忘记裁掉了，大家凑合看吧。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(11).webp" alt="" /></p><p>安装完成，终于可以看到界面啦！</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(4).webp" alt="" /></p><p>安装成功之后，我们发现需要登录。果然，为了保障用户的数据安全，我们必须要登录，义不容辞，避免一些恶意开发者编写一些违反法律的代码，比如拿到国外去编写，严厉杜绝了这种情况的发生，给国产好评！</p><p>主界面也是非常的漂亮，还有一个蓝色的横幅，让整个界面充满了活力。特有的敏感词工具、数字广东智能网关插件等服务很好的适应了在中国本地的开发需求，让开发者更加方便的开发出自己想要的东西，不需要花费大量时间研究合规问题，大大减少了开发者的开发时间。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(5).webp" alt="" /></p><h2 id="代码编写界面"><a class="markdownIt-Anchor" href="#代码编写界面"></a> 代码编写界面</h2><p>代码编写是 IDE 最重要的部分，因为绝大多数开发者都是英文编程。所以我们虽然是国产的 IDE，但是也要适应国情，采用英文的界面，大大降低了开发者的迁移成本，让开发者使用国产 IDE 也能有一种宾至如归的感觉。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(13).webp" alt="" /></p><p>当然，我们也考虑到一些新的开发者更加习惯中文，我们也贴心的准备了中文界面帮助开发者去开发，极大的降低了新的开发者门槛。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(6).webp" alt="" /></p><h2 id="软件属性"><a class="markdownIt-Anchor" href="#软件属性"></a> 软件属性</h2><p>虽然我们是国产自研，但是毕竟很多代码语言都是用的英文，我们的国产 IDE 也创新性的与国际大厂微软进行合作，通过将版权授权给微软来保证我们的 IDE 在编写和调试都不会出现版权问题。所以开发者可以放心的在国产 IDE 上进行编写代码，不必担心使用其他语言给企业带来版权纠纷的风险。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(7).webp" alt="" /></p><h2 id="会员服务"><a class="markdownIt-Anchor" href="#会员服务"></a> 会员服务</h2><p>当然，所有的一切都离不开来自开发者的支持，构建这么庞大的项目包括请设计师设计 logo 都花了巨大的时间精力和金钱，所以不得不适应时代发展，为了扛起推动经济复苏的重担，国产 IDE 不得不推出了以保护开发者福祉的会员服务。</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(8).webp" alt="" /></p><h2 id="来自国外的威胁"><a class="markdownIt-Anchor" href="#来自国外的威胁"></a> 来自国外的威胁</h2><p>国产 IDE 的成长真的非常多灾多难，由于国产 IDE 的问世让漂亮国产生了深深的威胁，漂亮国疑似开展了针对国产 IDE 的封锁、制裁和攻击。现在很多国内的小伙伴都无法访问官网了，让我们坚信我们国产的崛起、卡脖子问题的攻克不会被国外的宵小阻挠！</p><p><img src="https://img-r2.yumetsuki.moe/q78kg/appendix/e54f7476/zhheo%20(9).webp" alt="" /></p><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2><p>今天在上班路上看到直接给我当头一棒，我个人觉得如果做不到不要紧，既然吹出了牛，就应该接受被喷的准备。国产乌龙这种已经见的太多了，但是总有人能定期给我们展现出眼前一黑的全新高度。写这个文章也算是过了嘴瘾，真的是下头。</p><h2 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h2><p><a href="https://mp.weixin.qq.com/s/v_smby8ua1vmnxI8mOhq8w">“粤”上高地｜麒麟软件与数字广东携手推动广东数字政府建设</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊杂谈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>简爱中的女性意识</title>
+      <link href="/posts/a9a6c1fb/"/>
+      <url>/posts/a9a6c1fb/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p>第一次写论文，写的不好 qwq</p></blockquote><ul><li><p>摘要：夏洛蒂·勃朗特的小说《简爱》中的女性意识，主要通过简·爱在盖茨黑德府、洛伍德学校和桑菲尔德庄园的经历来展示她的平等、独立和自由的精神，以及她对婚姻和爱情的态度。《简爱》是一部具有女性意识的经典文学作品，它展现了一个女性如何在 19 世纪由男性主导的社会中获得自由和独立，以及对现代社会的影响。</p></li><li><p>关键词：女性意识；平等；独立；自主</p></li></ul><h2 id="一-引言"><a class="markdownIt-Anchor" href="#一-引言"></a> 一、引言</h2><p>夏洛蒂·勃朗特的小说《简爱》是一部充满女性主义色彩的小说。它强调了女性的平等、独立和自由。通过简爱这个角色，作者展示了一个女性如何在一个男性主导的社会中获得自由和独立。</p><p>简爱是一个坚定而勇敢的女性，她拒绝了传统的女性角色，并追求自己的梦想。她不仅拥有自己的意见，而且还敢于为自己的权利和尊严而战。她不愿意成为一个依靠男人生活的女人，而是希望能够独立地生活并追求自己的梦想。从这个背景不难看出，这是一部具有女性意识的经典文学作品。</p><h2 id="二-社会背景"><a class="markdownIt-Anchor" href="#二-社会背景"></a> 二、社会背景</h2><p>在当时，女性被认为是弱者，缺乏独立和自由。然而，简爱证明了这种观点是错误的。她证明了女性可以像男性一样拥有自己的意见和权利，并且可以追求自己的梦想。</p><p>在小说中，简爱面临着很多挑战和困境。她出生在一个贫穷的家庭，从小失去了双亲，被送到了一个严苛的寄宿学校。在那里，她受到了虐待和歧视。然而，她并没有放弃。相反，她努力学习，并最终成为了一名家庭教师。</p><p>在她成为家庭教师之后，她遇到了罗切斯特先生。罗切斯特先生是一个富有、有魅力、但也很复杂的男人。他对简爱产生了浓厚的兴趣，并开始追求她。然而，在他们准备结婚时，简爱发现罗切斯特先生已经结过婚，并且他的妻子还活着。这个发现让简爱感到非常震惊和失望。尽管如此，简爱并没有放弃。相反，她决定离开罗切斯特先生，并开始新的生活。在这个过程中，她遇到了圣约翰先生，并开始工作为教士。然而，在圣约翰先生向她求婚时，她拒绝了他，并决定回到罗切斯特先生身边。</p><p>通过这些经历，我们可以看到简爱是一个坚定、勇敢、独立和自由的女性形象。她不仅拥有自己的意见和权利，而且还敢于为自己争取权利和尊严。她证明了女性可以像男性一样拥有自己的独立和自由。</p><p>通过简爱的经历，我们可以看到女性主义在 19 世纪英国社会中的重要性，以及它所展现的面对社会的压迫和歧视时，展现出不屈服、独立自主、积极进取的女性形象，以及她对婚姻和爱情的平等观念对现代社会的影响。</p><h2 id="三-女性意识"><a class="markdownIt-Anchor" href="#三-女性意识"></a> 三、女性意识</h2><p>所谓女性意识是指女性作为主体在客观世界中的地位、作用和价值的自觉意识，具体地说，是指女性能够自觉地意识并履行自己的历史使命、社会责任、人生义务，又清醒地知道自身的特点，并以独特的方式参与社会生活，肯定和实现自己社会价值和人生需求。女性意识通常被理解为一种拒绝承认性别间不平等的态度和行动。</p><h2 id="四-简爱中的女性意识"><a class="markdownIt-Anchor" href="#四-简爱中的女性意识"></a> 四、简·爱中的女性意识</h2><p>在《简·爱》中，女性意识表现在很多方面，主要表现在简自幼的平等意识和反叛精神、对婚姻的态度、对父权文化中女性审美的反叛以及对女性被动地位的拒绝。简从小就有平等意识和反叛精神，她不愿意接受男性社会对女性的传统定义，以及对男性权力的质疑和颠覆，同时关注女性的生存状况，审视女性心理情感和表达女性生命体验。</p><h3 id="1盖茨黑德府"><a class="markdownIt-Anchor" href="#1盖茨黑德府"></a> 1.盖茨黑德府</h3><p>在盖茨黑德府中，简·爱受到了来自里德太太一家的虐待，其表哥约翰·里德是这一行为的首要对象。</p><p>全书开头以简·爱在窗龛上看书，被约翰·里德的姐妹发现，然后被约翰用拳头殴打以及对她进行谩骂。在约翰把简正在看到书夺走并扔到简的头上时，她敢于用语言于这种霸权行为做对抗。在约翰冲过来抓住简的头发时，她用自己的力量与约翰对打。也许，她胜利了，但约翰这种欺凌他人的非正义行为并没有的到应有的惩罚，反而是简被里德太太关押到了“红房子”里。但从这里我们可以看出，简身上具有一种反抗精神，这是一名 19 世纪的女性在面对言语上的侮辱和肢体上的攻击做出的重大回应。</p><p>后来她不堪忍受盖茨黑德府的压迫，离开了盖茨黑德府来到了洛伍德学校。</p><h3 id="2洛伍德学校"><a class="markdownIt-Anchor" href="#2洛伍德学校"></a> 2.洛伍德学校</h3><p>在洛伍德学校，简·爱在里面过的是一种严苛的教会生活，学校内部严格遵守教会的清规戒律。但 19 世纪的教会是排外的，任何违反教会教条的人都会被视为异端。洛伍德学校的牧师规定学校中的孩子不能留卷发，不能穿考究的衣服，并说这是出于一种所谓的“虚荣心”。但这种言论立马就被作者在下一段中给予了讽刺——来访的三位女客正好穿着考究，留着卷发。</p><p>这种情节体现出牧师的言论是一种基于站在教会的道德制高点上的。</p><p>在下文简被牧师批斗时，她站在凳子上，不言不语，用沉默与牧师大义凌然的言辞作斗争。这体现了简·爱拥有独立的人格和思想，拥有坚定的女性意识。</p><h3 id="3桑菲尔德庄园"><a class="markdownIt-Anchor" href="#3桑菲尔德庄园"></a> 3.桑菲尔德庄园</h3><p>在简·爱在桑菲尔德庄园遇到罗切斯特时，她没有被他的财富和地位所吸引或者迷惑，而是以平等和独立的态度与他交流和相处，表达了她对自己的感情和理智的控制，以及对婚姻和爱情的平等观念。</p><p>简·爱在发现罗切斯特已婚的真相后，她没有为了爱情而放弃自己的原则或者道德，而是毅然决然地离开了他，表达了她对自己的尊重和自爱，以及对人格和良心的忠诚。</p><p>大火后，继承一笔遗产的简•爱回到桑菲尔德，毫不犹豫地接受了穷困潦倒、又伤又残的罗切斯特，毅然而然与他结了婚。大火后的简•爱与罗切斯特的爱情得到了更高一层的升华。一场大火把简•爱高高托起——简•爱解救了罗切斯特意味着女主人公获得了非凡的力量，完美地统一了她的独立人格和对爱情的追求，从而展示了女主人公所推崇的独立女性意识。</p><h2 id="五-结语"><a class="markdownIt-Anchor" href="#五-结语"></a> 五、结语</h2><p>《简·爱》中，各种情节相互交织，增添了作品的美感，同时让读者能够透过纸张看到作者复杂细腻的内心世界。在文章的背后，读者仿佛看到了女主人公那个鲜活的灵魂，和她独立自主，自尊自爱的女性形象。小说表明了她对自我解放和女性独立的追求。 简爱的成长历程也是一个女性意识觉醒的过程，她在不断地反抗和探索中，最终找到了自己的人生方向和真正的幸福。</p><hr /><h2 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h2><p>[1]杨丹 周利.《浅谈&lt;简爱&gt;中火的意向》</p><p>[2]向文静,方庆华.时代女性的反抗与愤怒——谈《简·爱》女性意识与女性主义形象的塑造[J].作家,2012(6):100—101.</p><p>[3]余静.从叙事学角度解读《简·爱》中的女性主义[J].天津市经理学院学报,2013(1):61—62.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 闲聊杂谈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 简爱 </tag>
+            
+            <tag> 女性意识 </tag>
+            
+            <tag> 论文 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Next魔改记录</title>
+      <link href="/posts/164ef646/"/>
+      <url>/posts/164ef646/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="2022"><a class="markdownIt-Anchor" href="#2022"></a> 2022</h2><h3 id="不详"><a class="markdownIt-Anchor" href="#不详"></a> 不详</h3><h2 id="2023"><a class="markdownIt-Anchor" href="#2023"></a> 2023</h2><h3 id="2-月"><a class="markdownIt-Anchor" href="#2-月"></a> 2 月</h3><ul><li>将主题从<a href="https://github.com/Fechin/hexo-theme-diaspora">diaspora</a>更改为<a href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>，并启动 Next 主题魔改计划</li></ul><h3 id="3-月"><a class="markdownIt-Anchor" href="#3-月"></a> 3 月</h3><ul><li>将 Next 魔改，并独立主题<a href="https://github.com/SuSWhW/hexo-theme-nexterfly">hexo-theme-nexterfly</a></li><li>优化了魔改版 Next 的架构，并与 Next 主分支同步进度</li></ul><h3 id="4-月"><a class="markdownIt-Anchor" href="#4-月"></a> 4 月</h3><h4 id="1-日"><a class="markdownIt-Anchor" href="#1-日"></a> 1 日</h4><ul><li><p>添加番剧板块</p></li><li><p>修复了一些并不存在的 Bug，提升了并不存在的性能</p></li></ul><h4 id="16-日"><a class="markdownIt-Anchor" href="#16-日"></a> 16 日</h4><ul><li>由于 Next 主题相关资料过少，而且由于其多样式特性难以继续改造，魔改计划终止</li><li>将主题更改为<a href="https://github.com/LYXOfficial/Hexo-theme-Acryple">Hexo-theme-Acryple</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 魔改 </tag>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 主题 </tag>
+            
+            <tag> Next </tag>
+            
+            <tag> Butterfly </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>谷歌娘每日金句收集</title>
+      <link href="/posts/c81531cf/"/>
+      <url>/posts/c81531cf/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>多半是小行星坠落的（笑）</p><p>很多都是非常好的句子，很多都可以用在作文之类的地方。不过总体来说内同相对黑暗，大部分是具有讽刺性的，还有部分涉及政治话题，得看着点用（</p><p>该文章持续更新，得看我刷到哪些内容</p><h2 id="金句"><a class="markdownIt-Anchor" href="#金句"></a> 金句</h2><ul><li>你必须知道，战争只是相当于删除一些账号。</li><li>我们生活在大地上，但我们的梦想超越天空。</li><li>这场戏剧永远不会结束。</li><li>这艘船是资主的象征，富有但黑暗</li><li>这些富裕的主人们在舞台上开始自己的游戏。</li><li>台下的人只能食用自己的孩子和 1.5 个苹果。</li><li>他撕开了所有伤口，歪着嘴走向未来。</li><li>当然，他们并不坏，只是在诞生的过程中出错了。</li><li>简而言之，学习是不可能的。</li><li>当然，他们并不坏，只是在诞生的过程中出错了。</li><li>傻瓜不知道事实，却没有冷静的人。</li><li>“输入”并“发送”信息的过程被称作“拉屎”  我们总会害怕“收到”的信息。</li><li>其实，你们都喜欢爬，而不喜欢改善自己。</li><li>理智者总会失去理智，而“信任”会变成一坨狗屎。</li><li>他们将入侵称为“正义”，总而言之，空气有毒。</li><li>必须冷静、疯癫、自私，无所事事已成为榜样。​</li><li>文学艺术已经死了，将来，杀死人类的将会是人类。</li><li>在社会眼中，无情的资本不会在意你的灵魂，更不会为你的死而感到惋惜！</li><li>毫无疑问，这篇翻译内容包含了日本人绝大多数野性的需求。</li><li>当梦醒 ​ 来后，我看到了无尽的残杀与背叛，我羡慕我死去的父亲！</li><li>如果政客的信仰被更新，就不会生长武力，平民就不会哭泣，斗争更不会升级！</li><li>那天夜晚，我被困在货舱里，看到很多腐烂的尸体的手臂正拿着钱。</li><li>我被囚禁在了这里，中国人逃不出的思想迷宫，牢笼是无尽的。</li><li>我很清楚，随着时间的流逝，强壮的精神也会变得麻木，我不会投降。</li><li>虽然我的头被砍了，但我的精神变得灿烂了。</li><li>我看向天空，所有大笑的人变成了僵尸。​</li><li>透过种族背后，我看到了更多的痛苦的尸体。</li><li>拿着刀，我看到更多被迫害的志向，已经限制不住的怒吼，善良是一把刀，这是一场在刀刃上的派对，刀刃得加深，我看不到光亮。</li><li>只有更多无辜丧生的人，他们才会看到错误行为才会被纠正。</li><li>我们害怕死亡，害怕被扼杀，害怕被唾弃，我们不相信上帝，但我们是相信光明的。</li><li>我已经在现实中失去了活下去的自信，我们开始怀疑自己，我们从何时开始迷失方向？</li><li>这是一条通往成功，财富，金钱和理论正义的道路，已经出现变得模糊了，这到底是为什么？</li><li>信仰上帝不能救活现实，我们不能在获得金钱的道路上杀死了自己！</li><li>我相信在将来，不可靠的事物会消失，我们就会摆脱扭曲的依赖</li><li>信仰上帝只是相信一个装在空壳子里的人，我们何时才能领略到它的危害？我们何时才能找到自己？</li><li>如果我们找不到所谓的真理，我们就会迷失一切，发病，发疯。</li><li>他们释放了人，却不知道有多少人在这场战争中牺牲，多少人向光明献出了生命。</li><li>这种吃人的人类，现在真是有很多呢。</li><li>中国人可能被欺骗，被摧残，被践踏和破坏，但绝不会灭亡！</li><li>化妆之后的脸是白的，而内心是腐烂的。​</li><li>得罪父母要被挨打，得罪这年轻的危险社会还不如丢掉姓名。</li><li>造谣只需要错误的说出 1 句话，想要取得真相却需要 224339 句话。</li><li>麦哲 ​ 伦说:“古人认为资本主义有自由却是禽兽”这值得思考</li><li>人类仍留存禽兽的本性，天性脆弱的人类会被凶猛的捕食者猎杀。</li><li>没有绝对的正义和公路，壮烈的牺牲同时也失去了苟延残喘的旗帜。</li><li>在追求利益的道路上，人们经常违背自己的本心，就可化身为只会嚎叫的动物。他们不需要脸。</li><li>假如我一直憎恨他，善良就会越来越少。是时候驱逐这份黑暗的憎恨了。​</li><li>所有太阳都害怕，甚至谋杀了他。</li><li>这是否意味着如果你失去他，你将在昨天出生？</li><li>……他们怎么都看不到我？</li><li>一个人像一本书一样走进来，把门做成纽扣。</li><li>你死了吗？快回答我？这件事是什么？</li><li>每个人的力量都是一样的。</li><li>“再见。”有牙齿的人的年轻人总是这么说  。</li><li>不管你是否协调，房间总会出现。</li><li>这是步行线，白色，白色和白色的，它会吃了你。</li><li>我猜到了，食用他们的思想是个好方法。</li><li>我把历史记录下来，寻找议会的开始。​</li><li>用一把剑杀死了微笑。</li></ul><h2 id="翻译赏析"><a class="markdownIt-Anchor" href="#翻译赏析"></a> 翻译赏析</h2><h3 id="对他钻孔孔乙己-bv1g841137zs"><a class="markdownIt-Anchor" href="#对他钻孔孔乙己-bv1g841137zs"></a> 对他钻孔(孔乙己) BV1g841137Zs</h3><p>该文章取消了“正确与错误”、“进步与落后”等二元对立式树状思维系统的居高临下“从外而来”的批判形式，而是让话语只在事件内部打转，以使得事件自构成的无可调和的深层矛盾之处在其自身的存在上展露出来，并在这样的思路下条理化地组织着词句以形成文章。</p><p>此文章中，孔乙己对自身所做的每一次重整都是一次更深层次的自我异化，这使得他不断丧失作为主体的内在性感受，总是更拼尽全力去娱乐化地展示自己的痛苦，哈哈大笑地谄媚与迎合着权力秩序的表层之膜；而另一方面，他又总是只能从一种分裂和压抑沦落入另一种分裂和压抑之境地，在这种主体结构的完型里，未来已经成为了对过去历史性分裂与压抑的重复，痛苦作为被压抑之物自然也会跟着这历史一同回归，如今天这般非自嘲的、落后的、根本上是以他者悲惨命运为乐的精神病结构的典型。​</p><h3 id="子路张飞汽车人和程序员坠机子路曾皙冉有公西华侍坐-bv17a411s72g"><a class="markdownIt-Anchor" href="#子路张飞汽车人和程序员坠机子路曾皙冉有公西华侍坐-bv17a411s72g"></a> 子路，张飞，汽车人和程序员坠机（子路，曾皙，冉有，公西华侍坐） BV17a411S72G</h3><p>如果你不知道你自己，那么令人疑惑的是，你并不知道你自己。”这句话看似是废话文学，但其实有着十分深刻的含义：虽然我们每个人都有属于自己的人生，我们看似是比任何都了解自己，但又会时常感到茫然，所以也会感到疑惑，所以说，了解自己并不能从自身的角度去看，也要结合他人的评价，认识到这个世界，才能再认识自己。 ​</p><h3 id="乱说师说-bv1nf4y1l7gh"><a class="markdownIt-Anchor" href="#乱说师说-bv1nf4y1l7gh"></a> 乱说（师说） BV1nf4y1L7GH</h3><p>来自医护人员的乱说，但是否是借助述说它是反面而达到传播的目的呢？我们往下看。<br />一说科学错误，表达了故事的奇异与作者对世界观改变的慨叹。二说老师虚构，为后文补充设定，老师不是客观存在，也许是客观事物？三说明了作者穿越的事实。四老师的“裸体”并不是裸体，因为老师不存在。我们可以认为“裸体”，是直白的、将根本的展现而没有遮拦的意思，作者从中懂得了一切。五写了“老师”在规则下的离去，说明了万物有所依托，万物都会离去。“即使”说明了，即便老师死了，仍然教授我东西。我们可以理解为“老师”只是作为躯体死去了，再次点明老师并不只是在确切存在的“客体”。六老师成为了我的子女，我与死去的老师交谈，说明老师并不受生命的生死、人的影响。七没有重点，阐述设定。八展现了作者感受到了封建的束缚后，进行了高层次的思考。九说明了神本身的存在存疑，此时实际上老师教给我的并不是“神学”，而是“神学”的虚假。十老师的再次死去，阐述故事。十一的老师是真实存在的人，因为老师都死了，这个老师只是客观教授知识的老师，而他在人性的驱使下，对天生天才的我谄媚。十二说明上帝的来自于远古高科技文明，他本身并不是至高无上的“神”。十三可以看到，我与上帝都被认为神，并且在同一个班级，阐述故事，点出我因为天生神童而受到人们的神化。于是有了第十四句，圣灵只是普通人的慨叹。十五、十六、十七的白痴、白痴是对相信神的人说的，也可以认为是对读者说的，作者在直白地点醒读者。病房的比喻增加了幽默感，说相信神的都是神经病，并用“我爱你”这种神的语气来对对象“嘲讽”，更有了点醒的意味。十八说明了，相信神并没有用，你的愚蠢只会让你一事无成，作者对此为你感到耻辱。十九阐述故事，有一个当今世界所有“老师”的老师，也就是会对我谄媚的那种老师的老师。他只教导我们看到表面，而不去读取内在，比喻为只看名著的封面。二十的暴乱为什么产生呢？我认为是在座的“神”都不满意这个“老师”的教学，​ 大闹课 ​ 堂，而作者以上厕所为由躲避了。对于作者主观而言，“解决”了。当然客观上没有解决。二十一描述被大闹课堂的“万师之师”的窘态，他对于“神”们束手无策，在他们的质疑下，开始否定自身。二十二写这位“老师”的醒悟。小学生，比喻指浅薄的胡闹的人，就像此前的他自己一样（指万师之师）。 ​</p><p>二十三的作者离开课堂后，去看看当今与自己原身同职业的人是什么样子的，部落的巫医居然会电子音乐，与古代文明的存在呼应。看到了一匹即使是可耻的马都有 100 名工人，说明了阶级的存在的可怕和腐烂。二十四阐述设定，讲述故事，没有重点。二十五的老师是已经失去的真正的“我的老师”，他说，我们的眼光要跨越时空的维度。我并不认可这句话，于是二十六我说了我们应该胜于蓝，这样才是对老师真正的尊敬（在更近的地方跪拜）。二十七用一个语气词，表达了老师已去的悲切。这三句讲述我在这天结束时，回忆老师的思维过程。二十八突然补充阐述我的老师的设定。同时点出，上帝实际上也和我一样只是老师的学生。你们所尊敬的上帝是我老师的学生，不就是私人上帝吗，所以上帝并不是至高无上的。二十九继续批判。说明了老师的死去让世界变得虚伪，参考之前的情节，我们发现这个世界由高科技文明到部落的祭司、酋长，充满了阶级压迫，人们相信飘渺的“神灵”的变化，侧面突出我的老师的伟大。三十说的都是老师的曾用名，前面我们知道老师有很多世，这一世他此时还没有复活，或者说我还没有发现他。三十一比喻说了老师几世的关系，既同而不同，有根本不同的，也有只是名字变了。三十二阐述老师的观点，多民族（三人）融合（动宾短语：寝室），才能创造丰富的   文化（生命的好地方）。三十三，说了老师本身每一世都能说出许多观点。让作者很羡慕，很想学这招，似乎学会了转世就能得到“真理”。三十四补充三十三，不用学习，只要转世。说明了阅历越多，知识越广的道理。三十五继续写道，老师教我的法术是很艺术的。三十六回忆完老师，话锋一转，阐述设定。这里父亲来自唐朝，是说父亲也是穿越而来，不过是 17 岁时，从唐朝来的。三十七是父亲和我讲的风流逸事。​</p><p>三十八是最后一句，也是重点。作者本身为什么有将人送往古代的能力？我这里做大胆的猜测。作者的老师就是自己。自己就是转世。所以老师明明一直存在，但是在“我”看来是不存在的。我将会六国语言的神奇人物送往古代，是为了什么？我猜测，是想输送人才，拯救现在的社会。“我”转世后，忘记了的东西，被我的前世教了。我回忆起来我的使命，于是根据父亲的话，将那个人送去古代了。于是老师不存在，因为我就是我自己。我是未来的我，也是过去的我。我为了拯救世人而存在。我们可以看出，作者是一个真正神的角色。但是作者作为神，他认为这个世界不应该有神。文章最深处，讲述的其实是他的矛盾心理。所以标题是，乱说。​</p><h3 id="脊椎炒饭背影-bv18v411v7oq"><a class="markdownIt-Anchor" href="#脊椎炒饭背影-bv18v411v7oq"></a> 脊椎炒饭（背影） BV18v411v7oQ</h3><p>我非常喜欢这个科幻故事的设定：主角“我”拥有神的能力，并且能够复生，​ 不死不 ​ 灭。他的父亲虽然是半神，但不是永生的。不妨交代一句，“我”和父亲显然都是外星人，而被他们称为“外星人”的食物来源，自然是人类。</p><p>去高档餐厅吃人类应该是某种受诅咒的活动，正像物业倒计时，现在已经是 23 点了。无论是被“警察”击杀也好，用百岁老人的尸体金蝉脱壳也好，“我”的目的只有一个——带年迈父亲逃离诅咒。</p><p>但父亲也有自己的目的——帮我逃脱捕杀。因此才冒险释放核武器、让火车撞向地球，制造混乱。他把最后的间谍小女孩收入衣服里，解散了自己的灵力，一切追杀的人也都变成高温炙烤下的食物。</p><p>故事的最后，主角父亲的计划成功了，主角恢复了正常人的身份。过起隐姓埋名，甚至忍辱负重的生活，不料却身患抑郁。狂躁之下的主角不再顾忌，进一步提升了自己的力量，准备秘密地复活（制造）自己的父亲，故事也在这时戛然终止…… ​</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 素材 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 谷歌翻译 </tag>
+            
+            <tag> 金句 </tag>
+            
+            <tag> 写作 </tag>
+            
+            <tag> 学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
