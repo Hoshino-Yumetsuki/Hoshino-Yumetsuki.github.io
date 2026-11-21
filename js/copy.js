@@ -1,0 +1,2 @@
+/*! Generated asset: esbuild minified */
+(()=>{"use strict";const n=()=>{window.Snackbar?.show({text:"复制成功,如转载请注明出处！",pos:"top-right",onActionClick:()=>{window.open("/license","_blank")},actionText:"查看博客声明"})},o=t=>{t.code==="F12"&&window.Snackbar?.show({text:"已打开开发者模式，扒源请谨记MIT协议！",pos:"top-right",onActionClick:()=>{window.open("/license","_blank")},actionText:"查看博客声明"})},e=()=>{document.addEventListener("copy",n),document.addEventListener("keydown",o)};lifecycle.once(e)})();

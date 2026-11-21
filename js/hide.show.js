@@ -1,0 +1,2 @@
+/*! Generated asset: esbuild minified */
+(()=>{"use strict";let e=null,l=null,t=null,i=null;const o=()=>{if(e||(e=document.querySelector("footer")),!e)return;const n=e.getBoundingClientRect().top<=window.innerHeight;n!==i&&(i=n,l||(l=document.querySelector(".aplayer .aplayer-body")),t||(t=document.getElementById("fps")),l&&(l.style.display=n?"none":""),t&&(t.style.display=n?"none":""))},r=btf.throttle(o,200);lifecycle.onReady(()=>{e=null,l=null,t=null,i=null,o()}),window.addEventListener("scroll",r,{passive:!0})})();

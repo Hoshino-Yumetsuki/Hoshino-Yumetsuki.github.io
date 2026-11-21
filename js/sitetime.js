@@ -1,0 +1,2 @@
+/*! Generated asset: esbuild minified */
+(()=>{"use strict";const u=new Date(Date.UTC(2022,6,4,12,0,0));let n=null;function c(){const t=new Date-u,a=1e3,o=a*60,e=o*60,s=e*24,f=s*365,d=Math.floor(t/f),h=Math.floor(t%f/s),m=Math.floor(t%s/e),y=Math.floor(t%e/o),D=Math.floor(t%o/a),r=document.getElementById("footer_custom_text");r&&(r.textContent=`这个小破站已运行 ${d} 年 ${h} 天 ${m} 时 ${y} 分 ${D} 秒`)}function i(){l(),c(),n=setInterval(c,1e3)}function l(){n!==null&&(clearInterval(n),n=null)}lifecycle.onReady(i),lifecycle.onCleanup(l)})();
